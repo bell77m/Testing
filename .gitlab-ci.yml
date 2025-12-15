@@ -1,15 +1,16 @@
-
+# 1. เลือก Image ที่มี Python และ Playwright
 image: mcr.microsoft.com/playwright/python:v1.57.0-jammy
+
 stages:
   - test
   - report
 
-
+# 2. คำสั่งรันเทสต์ (GitLab เข้าใจแค่นี้)
 test_execution:
   stage: test
   script:
-
     - pip install -r requirements.txt
+    - playwright install --with-deps  # เพิ่มบรรทัดนี้กันเหนียว (เผื่อ Image ไม่มี Browser)
     - pytest
   artifacts:
     when: always

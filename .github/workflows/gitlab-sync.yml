@@ -1,9 +1,12 @@
 name: Mirror to GitLab
 
-on: [push, delete]
+on:
+  push:
+    branches: [ "master", "main" ]
+  delete:
 
 jobs:
-  mirror:
+  mirror_to_gitlab:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -11,9 +14,9 @@ jobs:
           fetch-depth: 0
       - uses: yesolutions/mirror-action@master
         with:
-          # ใส่ URL ตรงๆ ไปเลย (อย่าลืมเปลี่ยน username/project)
+          # ใส่ URL GitLab ของคุณให้ถูก (ต้องลงท้าย .git)
           REMOTE: "https://gitlab.com/bell77m/Testing.git"
           GIT_USERNAME: "bell77m"
-          # อันนี้ยังต้องใช้ Secret เพราะเป็นความลับ
+          # รหัสผ่านต้องดึงจาก Secrets ห้ามใส่ตรงๆ
           GIT_PASSWORD: ${{ secrets.GITLAB_TOKEN }}
           PUSH_ALL_REFS: "true"
