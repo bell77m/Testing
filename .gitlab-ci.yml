@@ -1,4 +1,4 @@
-# 1. เลือกคอมพิวเตอร์ (Image) ที่มี Python และ Playwright พร้อมแล้ว
+
 image: mcr.microsoft.com/playwright/python:v1.57.0-jammy
 
 stages:
