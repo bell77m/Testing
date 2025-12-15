@@ -1,4 +1,21 @@
-# GitLab CI Configuration
+# 1. เลือกคอมพิวเตอร์ (Image) ที่มี Python และ Playwright พร้อมแล้ว
+image: mcr.microsoft.com/playwright/python:v1.40.0-jammy
+
+# 2. กำหนดลำดับขั้นตอน
 stages:
   - test
   - report
+
+# 3. งานที่ 1: สั่งรันเทสต์ (Jobs) <-- ส่วนนี้คือที่ขาดไป
+test_execution:
+  stage: test
+  script:
+    # ติดตั้ง Library ตามไฟล์ requirements.txt
+    - pip install -r requirements.txt
+    # สั่งรัน Playwright (ถ้าเทสต์พัง ก็ยังเก็บผล)
+    - pytest
+  artifacts:
+    when: always
+    paths:
+      - reports/allure-results
+    expire_in: 1 week
