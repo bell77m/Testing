@@ -1,0 +1,4 @@
+# GitLab CI Configuration
+stages:
+  - test
+  - report
