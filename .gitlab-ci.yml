@@ -5,7 +5,7 @@ stages:
   - test
   - report
 
-# 3. งานที่ 1: สั่งรันเทสต์ (Jobs) <-- ส่วนนี้คือที่ขาดไป
+
 test_execution:
   stage: test
   script:
