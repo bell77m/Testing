@@ -29,7 +29,6 @@ def setup(page: Page):
 
     yield page
 
-    # Teardown code here
     # page.context.clear_cookies()  # If needed
 
 
