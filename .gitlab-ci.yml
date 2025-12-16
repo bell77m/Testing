@@ -253,3 +253,4 @@ mr_summary:
     - merge_requests
   when: always
   allow_failure: true
+
