@@ -1,0 +1,38 @@
+# Python Project Configuration
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  \.git
+  | \.venv
+  | venv
+  | __pycache__
+  | reports
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip_gitignore = true
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv"]
+skips = ["B101"]  # Skip assert_used warning in tests
+
+[tool.pytest.ini_options]
+addopts = "--alluredir=./reports/allure-results --clean-alluredir -v"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "smoke: Critical path tests",
+    "regression: Full suite",
+    "security: Security tests",
+    "slow: Slow running tests",
+    "accessibility: Accessibility tests"
+]
