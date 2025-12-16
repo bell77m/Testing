@@ -183,14 +183,10 @@
 #             'Username field should allow autocomplete'
 
 
-from playwright.sync_api import Page, expect
-import pytest
-import allure
 
 import pytest
 import allure
 from playwright.sync_api import Page, expect
-
 
 @allure.feature('Authentication')
 @allure.story('Login - Full Coverage')
