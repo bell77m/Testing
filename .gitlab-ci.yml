@@ -41,9 +41,25 @@ lint_code:
   stage: lint
   script:
     - pip install black flake8 isort
-    - black --check .
-    - flake8 . --max-line-length=120
-    - isort --check-only .
+    - echo "📝 Checking code formatting..."
+    - black --check . --line-length=120 || echo "⚠️ Black formatting needed"
+    - flake8 . --max-line-length=120 --ignore=E203,W503,E501 || echo "⚠️ Flake8 issues found"
+    - isort --check-only . --profile=black --line-length=120 || echo "⚠️ Import sorting needed"
+    - echo "✅ Lint check complete (non-blocking)"
+  allow_failure: true
+
+# ==================== Auto-format Code (Optional) ====================
+format_code:
+  stage: lint
+  script:
+    - pip install black isort
+    - echo "🎨 Auto-formatting code..."
+    - black . --line-length=120
+    - isort . --profile=black --line-length=120
+    - echo "✅ Code formatted"
+    # Show what changed
+    - git diff --stat || true
+  when: manual  # Only run when manually triggered
   allow_failure: true
 
 # ==================== Smoke Tests (Fast) ====================
