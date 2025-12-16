@@ -1,13 +1,3 @@
-import sys
-from pathlib import Path
-
-# Add project root to Python path (works everywhere)
-project_root = Path(__file__).resolve().parent.parent
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
-
-print(f"✅ Project root added to path: {project_root}")
-
 import pytest
 from playwright.sync_api import Page
 
