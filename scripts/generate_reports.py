@@ -79,7 +79,6 @@ def main():
             print("\n⚠️  Warning: Low pass rate detected.")
 
     print("\n" + "=" * 60)
-
     # Exit with appropriate code
     if results['failed'] > 0:
         sys.exit(1)
