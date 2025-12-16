@@ -209,7 +209,6 @@ class TestLoginFull:
             page.fill("#user-name", "locked_out_user")
             page.fill("#password", "secret_sauce")
             page.click("#login-button")
-
         with allure.step("Verify error message"):
             # ต้องเจอ Error Message สีแดง
             error_msg = page.locator("[data-test='error']")
